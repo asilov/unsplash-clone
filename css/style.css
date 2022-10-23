@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'roboto', sans-serif;
 }
 
 .header-section {
@@ -10,4 +11,15 @@
     position: relative;
     background-size: cover;
     background-image: url('../img/bg.png');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.logo {
+    font-size: 80px;
+    font-weight: 400;
+    color: #fff;
+    text-transform: capitalize;
 }
