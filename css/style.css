@@ -68,3 +68,14 @@
     outline: none;
     text-transform: capitalize;
 }
+
+.search-btn {
+    padding: 10px 30px;
+    border-radius: 5px;
+    text-transform: capitalize;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: #0a1113;
+    color: #fff;
+}
