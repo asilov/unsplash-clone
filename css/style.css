@@ -23,3 +23,36 @@
     color: #fff;
     text-transform: capitalize;
 }
+
+.sub-line {
+    color: #fff;
+    padding: 20px 0 30px;
+    font-size: 20px;
+    text-transform: capitalize;
+    word-spacing: 2px;
+    position: relative;
+    font-weight: 300;
+}
+
+.sub-line::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: #fff;
+}
+
+.sub-line::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+} 
