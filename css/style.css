@@ -113,3 +113,27 @@
     border-radius: 10px;
     transition: .5s;
 }
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+    background: #ff4f4f;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+.download-btn {
+    text-transform: capitalize;
+    padding: 10px 20px;
+    background: #192f2e;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
