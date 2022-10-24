@@ -1,36 +1,48 @@
-const access_key = 'tjhU1W53pUTud8SOKjhtl8Mmdr9rr1fTjSRUXIpQFA0';
+let searchParam = location.search.split('=').pop()
 
-const random_photo_url = `https://api.unsplash.com//photos/random?client_id=${access_key}&count=20`;
+const access_key = 'tjhU1W53pUTud8SOKjhtl8Mmdr9rr1fTjSRUXIpQFA0'
 
-const gallery = document.querySelector('.gallery');
+const random_photo_url = `https://api.unsplash.com//photos/random?client_id=${access_key}&count=20`
+const search_photo_url = `https://api.unsplash.com/search/photos?client_id=${access_key}&query=${searchParam}&per_page=50`
 
-let allImages; // this will store all the images
-let currentImage;
+const gallery = document.querySelector('.gallery')
+
+let allImages // this will store all the images
+let currentImage
 
 const getImages = () => {
-    fetch(random_photo_url)
-    .then(res => res.json())
-    .then(data => {
-        allImages = data;
-        makeImages(allImages);
-    })
+	fetch(random_photo_url)
+		.then((res) => res.json())
+		.then((data) => {
+			allImages = data
+			makeImages(allImages)
+		})
+}
+
+const searchImages = () => {
+	fetch(search_photo_url)
+		.then((res) => res.json())
+		.then((data) => {
+			allImages = data.results
+			makeImages(allImages)
+		})
 }
 
 const makeImages = (data) => {
-    data.forEach((item, index) => {
-			let img = document.createElement('img')
-			img.src = item.urls.regular
-			img.className = 'gallery-img'
+	data.forEach((item, index) => {
+		let img = document.createElement('img')
+		img.src = item.urls.regular
+		img.className = 'gallery-img'
 
-			gallery.appendChild(img)
+		gallery.appendChild(img)
 
-			// popup image
+		// popup image
 
-			img.addEventListener('click', () => {
-				currentImage = index
-				showPopup(item)
-			})
+		img.addEventListener('click', () => {
+			currentImage = index
+			showPopup(item)
 		})
+	})
 }
 
 const showPopup = (item) => {
@@ -48,23 +60,28 @@ const showPopup = (item) => {
 	})
 }
 
+if (searchParam == '') {
+	getImages()
+} else {
+	searchImages()
+}
+
+
 // controls
 
-const preBtns = document.querySelector('.pre-btn');
-const nxtBtns = document.querySelector('.nxt-btn');
+const preBtns = document.querySelector('.pre-btn')
+const nxtBtns = document.querySelector('.nxt-btn')
 
 preBtns.addEventListener('click', () => {
-    if(currentImage > 0){
-        currentImage--;
-        showPopup(allImages[currentImage]);
-    }
+	if (currentImage > 0) {
+		currentImage--
+		showPopup(allImages[currentImage])
+	}
 })
 
 nxtBtns.addEventListener('click', () => {
-    if(currentImage < allImages.length - 1){
-        currentImage++;
-        showPopup(allImages[currentImage]);
-    }
+	if (currentImage < allImages.length - 1) {
+		currentImage++
+		showPopup(allImages[currentImage])
+	}
 })
-
-getImages() 
