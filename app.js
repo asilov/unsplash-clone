@@ -5,6 +5,7 @@ const random_photo_url = `https://api.unsplash.com//photos/random?client_id=${ac
 const gallery = document.querySelector('.gallery');
 
 let allImages; // this will store all the images
+let currentImage;
 
 const getImages = () => {
     fetch(random_photo_url)
@@ -17,13 +18,34 @@ const getImages = () => {
 
 const makeImages = (data) => {
     data.forEach((item, index) => {
-        
-        let img = document.createElement('img');
-        img.src = item.urls.regular;
-        img.className = 'gallery-img';
+			let img = document.createElement('img')
+			img.src = item.urls.regular
+			img.className = 'gallery-img'
 
-        gallery.appendChild(img);
-    })
+			gallery.appendChild(img)
+
+			// popup image
+
+			img.addEventListener('click', () => {
+				currentImage = index
+				showPopup(item)
+			})
+		})
 }
 
-getImages()
+const showPopup = (item) => {
+	let popup = document.querySelector('.image-popup')
+	const downloadBtn = document.querySelector('.download-btn')
+	const closeBtn = document.querySelector('.close-btn')
+	const image = document.querySelector('.large-img')
+
+	popup.classList.remove('hide')
+	downloadBtn.href = item.links.html
+	image.src = item.urls.regular
+
+	closeBtn.addEventListener('click', () => {
+		popup.classList.add('hide')
+	})
+}
+
+getImages() 
