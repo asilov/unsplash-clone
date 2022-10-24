@@ -7,8 +7,8 @@ const search_photo_url = `https://api.unsplash.com/search/photos?client_id=${acc
 
 const gallery = document.querySelector('.gallery')
 
-let allImages // this will store all the images
-let currentImage
+let currentImage = 0;
+let allImages; // this will store all the images
 
 const getImages = () => {
 	fetch(random_photo_url)
