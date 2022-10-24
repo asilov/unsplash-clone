@@ -48,4 +48,23 @@ const showPopup = (item) => {
 	})
 }
 
+// controls
+
+const preBtns = document.querySelector('.pre-btn');
+const nxtBtns = document.querySelector('.nxt-btn');
+
+preBtns.addEventListener('click', () => {
+    if(currentImage > 0){
+        currentImage--;
+        showPopup(allImages[currentImage]);
+    }
+})
+
+nxtBtns.addEventListener('click', () => {
+    if(currentImage < allImages.length - 1){
+        currentImage++;
+        showPopup(allImages[currentImage]);
+    }
+})
+
 getImages() 
